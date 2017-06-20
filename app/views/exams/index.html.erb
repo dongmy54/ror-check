@@ -1,0 +1,48 @@
+<script src="//cdn.bootcss.com/Chart.js/2.5.0/Chart.bundle.min.js"></script>
+
+
+<div class="col-md-8 col-md-offset-2">
+<h3 class="text-center">历次考试成绩</h3>
+
+<table class="table table-hover">
+	<thead>
+	  <tr class="info">
+		  <th>时间</th>
+		  <th>分数</th>
+		  <th>总题数</th>
+		  <th>正确题数</th>
+    </tr>
+	</thead>
+ 
+ <% @exams.each do |exam| %>
+ <% unless exam.score == nil %>
+	<tbody>
+	  <tr>
+		<td><%= exam.updated_at.strftime("%Y-%m-%d %I:%M %p") %></td>
+		<td><%= exam.score %></td>
+     	<td><%= exam.total_quantity %></td>
+        <td><%= exam.correct_quantity %></td>
+	  </tr>
+	</tbody>
+ <% end %>
+ <% end %>
+</table>
+
+<canvas id="myChart" width="400" height="200"></canvas>
+   <script>
+   var ctx = document.getElementById("myChart");
+   var myChart = new Chart(ctx, {
+       type: 'line',
+       data: <%= raw @data.to_json %>,
+       options: {
+           scales: {
+               yAxes: [{
+                   ticks: {
+                       beginAtZero:true
+                   }
+               }]
+           }
+       }
+   });
+   </script>
+</div>

@@ -1,0 +1,22 @@
+<div class="col-md-8 col-md-offset-2">
+<h3>以下是<%= current_user.email %>贡献的试题</h3>
+
+  <% @questions.each do |q| %>
+    <p> <%= q.stem %></p>
+    <br>
+    <p> A、<%= q.a %></p>
+    <br>
+    <p> B、<%= q.b %></p>
+    <br>
+    <p> C、<%= q.c %></p>
+    <br>
+    <p> D、<%= q.d %></p>
+    <br>
+    <p style="color: #E1396C"> 参考答案: <%= q.answer %></p>
+    <br>
+    <p style="color: #E1396C"> 注解: <%= q.note %></p>
+    <br>
+    <%= link_to("修改此题", edit_question_path(q),class: "btn btn-success btn-small") %> 
+     <%= link_to("删除此题", question_path(q), method: :delete,class: "btn btn-small btn-danger") %> 
+  <% end %>
+</div>

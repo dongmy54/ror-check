@@ -1,0 +1,14 @@
+<%= link_to("重新做题", questions_path, class: "btn btn-success") %>
+<h1>错题集</h1>
+<% @current_error_questions.each do |ceq| %>
+  <p style="font-weight: bold"><%= ceq.stem %></p>
+  <ul>
+  <li><%= ceq.a %></li>
+  <li><%= ceq.b %></li>
+  <li><%= ceq.c %></li>
+  <li><%= ceq.d %></li>
+  </ul>
+  <p>参考答案：<%= ceq.refanswer.answer %>。</p>
+  <p>注解：<%= ceq.refanswer.note %>。</p>
+  <br>
+<% end %>
