@@ -1,0 +1,13 @@
+<div class="col-md-8 col-md-offset-2">
+  <h3>修改试题页面</h3>
+  <%= simple_form_for [:admin,@question] do |f| %>
+  <%= f.input :stem, label: "题干" %>
+  <%= f.input :a, label: "选项A" %>
+  <%= f.input :b, label: "选项B" %>
+  <%= f.input :c, label: "选项C" %>
+  <%= f.input :d, label: "选项D" %>
+  <%= f.input :answer, label: "参考答案" %>
+  <%= f.input :note, label: "注释" %>
+  <%= f.submit "提交", class: "btn btn-info btn-primary" %>
+  <% end %>
+</div>

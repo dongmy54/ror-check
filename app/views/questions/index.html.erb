@@ -1,0 +1,48 @@
+<style type="text/css">
+  .complete {
+    color: green;
+    font-size: 25px;
+  }
+</style>
+
+
+<div class="col-md-8 col-md-offset-2">
+<%= link_to("交卷", result_exams_path, method: :post, class: "btn btn-success btn-primarg") %>
+<%= link_to("本次考试错题", current_error_questions_path, class: "btn btn-success btn-primarg") %>
+<%= link_to("查看过往所有错题", all_error_questions_path, class: "btn btn-success btn-primarg") %>
+<%= link_to("添加试题", new_question_path, class: "btn btn-info btn-small") %>
+<%= link_to("我贡献的试题", already_published_questions_path, class: "btn btn-warning") %>
+<% if current_user && current_user.exams.present? && current_user.exams.first.score.present? %> 
+<%= link_to '历次考试成绩', exams_path, class: "btn btn-primary" %>
+<% end %>
+
+<% @questions.each_with_index do |q,i| %>
+
+   <%= form_for @answer_record, :remote => true do |ar| %>
+      <h4>第<%= i+1 %>题：<%= q.stem %></h4>
+
+      
+    <label>
+      <%= ar.radio_button :rep_answer, "A", :checked => answer_option(q) == "A" %> A、 <%= q.a %>
+      <br>
+      <%= ar.radio_button :rep_answer, "B", :checked => answer_option(q) == "B" %> B、<%= q.b %>
+      <br>
+      <%= ar.radio_button :rep_answer, "C", :checked => answer_option(q) == "C" %> C、<%= q.c %>
+      <br>
+      <%= ar.radio_button :rep_answer, "D", :checked => current_user.exams.last.answer_records.find_by(:stem => q.stem) != nil  && current_user.exams.last.answer_records.find_by(:stem => q.stem).rep_answer == "D" %> D、<%= q.d %>
+
+      <%= ar.hidden_field :question_id, :value => q.id %>
+
+
+    </label>
+     <% if !is_answered?(q) %>
+      <p id="question-<%= q.id %>">
+        <%= ar.submit "答题确认", class: "btn btn-danger btn-sm" %></p>
+     <% else %>
+         <div><i class="fa fa-check-square-o complete"></i></div>
+      <% end %>
+  <% end %>
+  <% end %> 
+</div>
+
+       

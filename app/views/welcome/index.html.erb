@@ -1,1 +1,33 @@
-<h1> Hello dmy </h1>
+<style>
+	.note {
+		border: 2px solid black;
+		margin-left: 85px;
+		margin-top: 5px;
+	}
+</style>
+
+<h1> 欢迎来到ruby on rails 测评系统</h1>
+<div>
+<%= link_to("开始测试", start_test_exams_path, method: :post, class: "btn btn-success btn-primarg") %>
+<% unless current_user %>
+   <span id="direct-login">
+        <%= link_to("一键登录", direct_login_path, class: "btn btn-info") %>
+        </span>
+<% end %>
+</div>
+
+<div id="note-text" class="col-md-2 note">
+  <p>一键登录旨在，让使用者快速登录，省去注册、登录的时间。这相当于一个公用的账号，如果你真的喜欢本站，欢迎注册一个自己的账号。</p> 
+</div>
+
+<div class="modal ">
+	sdhsda
+</div>
+
+<script>
+	$("#note-text").hide();
+
+	$("#direct-login").hover(function(){
+		$("#note-text").toggle();
+	})
+</script>

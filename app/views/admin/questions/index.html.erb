@@ -1,0 +1,20 @@
+<div class="col-md-8 col-md-offset-2">
+<h3>👏进入管理员页面，你可以对所有试题进行管理。</h3>
+  <% @questions.each do |q| %>
+    <p> <%= q.stem %></p>
+    <br>
+    <p> A、<%= q.a %></p>
+    <br>
+    <p> B、<%= q.b %></p>
+    <br>
+    <p> C、<%= q.c %></p>
+    <br>
+    <p> D、<%= q.d %></p>
+    <br>
+    <p style="color: #E1396C"> 参考答案: <%= q.answer %></p>
+    <br>
+    <p style="color: #E1396C"> 注解: <%= q.note %></p>
+    <p>此题由：<span style="font-weight: bold;color: #2866AB"><%= q.user.email %></span>  于：<span style="font-weight: bold;color: #2866AB"><%= q.created_at %></span>提供</p>
+    <%= link_to("修改此题", edit_admin_question_path(q),class: "btn btn-success btn-small") %> 
+     <%= link_to("删除此题", admin_question_path(q), method: :delete,class: "btn btn-small btn-danger") %>   <% end %>
+</div>
