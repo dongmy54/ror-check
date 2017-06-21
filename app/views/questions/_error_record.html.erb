@@ -1,0 +1,13 @@
+<%= error_records.each_with_index do |error_record,i| %>
+
+     <p style="font-weight: bold;">第 <%= i+1 %> 题:<%= error_record.stem %></p>
+      <p>A、<%= error_record.a %></p>
+      <p>B、<%= error_record.b %></p>
+      <p>C、<%= error_record.c %></p>
+      <p>D、<%= error_record.d %></p>
+      <p style="color: red;">你的答案：<%= error_record.rep_answer %></p>
+      <p>参考答案：<%= error_record.answer %></p>
+      <p>注释：<%= error_record.note %></p>
+      <br>
+<% end %>
+   

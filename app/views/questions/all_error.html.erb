@@ -6,19 +6,8 @@
  <% if @error_records != [] %>
 
   <h3>第 <%= i+1 %>次考试错题</h3>
-
  
-	<% @error_records.each_with_index do |r,i| %>
-	  <p style="font-weight: bold;">第 <%= i+1 %> 题:<%= r.stem %></p>
-      <p>A、<%= r.a %></p>
-      <p>B、<%= r.b %></p>
-      <p>C、<%= r.c %></p>
-      <p>D、<%= r.d %></p>
-      <p style="color: red;">你的答案：<%= r.rep_answer %></p>
-      <p>参考答案：<%= r.answer %></p>
-      <p>注释：<%= r.note %></p>
-      <br>
-   <% end %>
+	  <%= render :partial => "error_record", locals: {:error_records => @error_records} %>
   <% end %>
  <% end %>
  </div>
